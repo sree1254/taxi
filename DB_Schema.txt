@@ -1,0 +1,166 @@
+--
+-- Database: `taxi`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `BookingInvoice`
+--
+
+CREATE TABLE `BookingInvoice` (
+  `Id` int(11) NOT NULL,
+  `BookingId` varchar(10) NOT NULL,
+  `TimeTaken` varchar(225) NOT NULL,
+  `KmTravelled` varchar(225) NOT NULL,
+  `TimePrice` varchar(225) NOT NULL,
+  `KmPrice` varchar(225) NOT NULL,
+  `TotalPrice` varchar(225) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Bookings`
+--
+
+CREATE TABLE `Bookings` (
+  `Id` int(11) NOT NULL,
+  `DriverId` int(11) NOT NULL,
+  `BookingId` varchar(10) NOT NULL,
+  `CustomerName` varchar(225) NOT NULL,
+  `CustomerNumber` varchar(10) NOT NULL,
+  `CustomerStartLatitude` decimal(10,8) NOT NULL,
+  `CustomerStartLongitude` decimal(11,8) NOT NULL,
+  `CustomerEndLatitude` decimal(10,8) NOT NULL,
+  `CustomerEndLongitude` decimal(11,8) NOT NULL,
+  `StartTime` varchar(225) NOT NULL,
+  `EndTime` varchar(225) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `CarType`
+--
+
+CREATE TABLE `CarType` (
+  `Id` int(11) NOT NULL,
+  `Type` varchar(225) NOT NULL,
+  `RatePerMinute` int(11) NOT NULL,
+  `RatePerKm` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `DriverDetails`
+--
+
+CREATE TABLE `DriverDetails` (
+  `Id` int(11) NOT NULL,
+  `CarTypeId` int(11) NOT NULL,
+  `FirstName` varchar(225) NOT NULL,
+  `LastName` varchar(225) NOT NULL,
+  `MobileNumber` varchar(10) NOT NULL,
+  `CarName` varchar(225) NOT NULL,
+  `Latitude` decimal(10,8) NOT NULL,
+  `Longitude` decimal(11,8) NOT NULL,
+  `OnTrip` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `LoginDetails`
+--
+
+CREATE TABLE `LoginDetails` (
+  `Id` int(11) NOT NULL,
+  `Username` varchar(225) NOT NULL,
+  `Password` varchar(225) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `BookingInvoice`
+--
+ALTER TABLE `BookingInvoice`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `BookingId` (`BookingId`);
+
+--
+-- Indexes for table `Bookings`
+--
+ALTER TABLE `Bookings`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `DriverId` (`DriverId`);
+
+--
+-- Indexes for table `CarType`
+--
+ALTER TABLE `CarType`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- Indexes for table `DriverDetails`
+--
+ALTER TABLE `DriverDetails`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `CarTypeId` (`CarTypeId`),
+  ADD KEY `Id` (`Id`);
+
+--
+-- Indexes for table `LoginDetails`
+--
+ALTER TABLE `LoginDetails`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `BookingInvoice`
+--
+ALTER TABLE `BookingInvoice`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `Bookings`
+--
+ALTER TABLE `Bookings`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+--
+-- AUTO_INCREMENT for table `CarType`
+--
+ALTER TABLE `CarType`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `DriverDetails`
+--
+ALTER TABLE `DriverDetails`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT for table `LoginDetails`
+--
+ALTER TABLE `LoginDetails`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `Bookings`
+--
+ALTER TABLE `Bookings`
+  ADD CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`DriverId`) REFERENCES `DriverDetails` (`Id`);
+
+--
+-- Constraints for table `DriverDetails`
+--
+ALTER TABLE `DriverDetails`
+  ADD CONSTRAINT `driverdetails_ibfk_1` FOREIGN KEY (`CarTypeId`) REFERENCES `CarType` (`Id`);
+COMMIT;
