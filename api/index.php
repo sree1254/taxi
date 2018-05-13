@@ -108,7 +108,7 @@
 						if(isset($content->type)){
 							switch ($content->type) {
 								case "LOGIN":
-										$query=mysql_query("SELECT * FROM LoginDetails WHERE Username='".$_SERVER['PHP_AUTH_USER']."' AND Password='".$_SERVER['PHP_AUTH_PW']."'");
+										$query=mysql_query("SELECT * FROM LoginDetails WHERE Username='".$_SERVER['PHP_AUTH_USER']."' AND Password='".md5($_SERVER['PHP_AUTH_PW'])."'");
 										if(mysql_num_rows($query)==1){
 											$response=array("status" => "Success", "status_code" => 200, "message" => "Login Success");
 											echo $this->encode_response($response,$_GET["format"]);

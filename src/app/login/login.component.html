@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <form>
+        <h1>Admin Login</h1>
+        <div class="form-group">
+          <label for="email">Username:</label>
+          <input type="text" class="form-control" [(ngModel)]="username" name="username">
+        </div>
+        <div class="form-group">
+          <label for="pwd">Password:</label>
+          <input type="password" class="form-control" [(ngModel)]="password" name="password">
+        </div>
+        <button type="button" class="btn btn-default" (click)="check_login()">Login</button> <br>
+        <div id="login_result"></div>
+      </form>
+    </div>
+  </div>
+</div>
