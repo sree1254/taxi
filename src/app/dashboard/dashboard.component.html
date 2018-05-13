@@ -1,4 +1,87 @@
 <app-header></app-header>
-<p>
-  dashboard content.
-</p>
+<div class="container">
+    <div class="row">
+		<div class="span12">
+			<form id="customer_details_container" *ngIf="displayCustomerDetailsContainer">
+			  <h1>Customer Details</h1>
+			  <div class="form-group">
+			    <label for="">Customer Name:</label>
+			    <input type="text" class="form-control" name="customer_name" [(ngModel)]="customerName">
+			  </div>
+			  <div class="form-group">
+			    <label for="">Customer Mobile Number:</label>
+			    <input type="text" class="form-control" name="customer_mobile_number" [(ngModel)]="customerMobile">
+			  </div>
+			  <div class="form-group">
+			    <label for="">Latitude:</label>
+			    <input type="text" class="form-control" name="latitude" [(ngModel)]="latitude">
+			  </div>
+			  <div class="form-group">
+			    <label for="">Longitude:</label>
+			    <input type="text" class="form-control" name="longitude" [(ngModel)]="longitude">
+			  </div>
+			  <div class="form-group">
+			    <label for="">Car Type:</label>
+			    <select class="form-control" name="car_type" [(ngModel)]="carType">
+				   	<option value="{{carType.Id}}" *ngFor="let carType of carTypes">{{carType.Type}}</option>
+				</select>
+			  </div>
+			  <div class="form-group">
+			    <label for="">KM Radius (Cabs Within selected km radius will be displayed):</label>
+			    <select class="form-control" name="km_radius" [(ngModel)]="kmRadius">
+				    <option value="1">1 km</option>
+				    <option value="2">2 km</option>
+				    <option value="3">3 km</option>
+				    <option value="4">4 km</option>
+				    <option value="5">5 km</option>
+				  </select>
+			  </div>
+			  <div class="form-group" *ngIf="displayNearByCabs">
+			    <label for="">Driver's Near By:</label>
+			    <select class="form-control" name="drivers_near_by" [(ngModel)]="driverSelected">
+			    	<option value="{{cab.Id}}" *ngFor="let cab of nearByCabs">{{cab.FirstName}} (cab.CarName) in {{cab.distance}} KM</option>
+				</select>
+			  </div>
+			  <button type="button" class="btn btn-default" (click)="getNearByCabs()" *ngIf="!displayNearByCabs">Get NearBy Cabs</button> 
+			  <button type="button" class="btn btn-default" id="assign_cab" *ngIf="displayAssignButton" (click)="assignCab()">Assign Cab</button> 
+			  <button type="button" class="btn btn-default" id="reset" *ngIf="displayAssignButton" (click)="reset()">Reset</button>
+			  <button type="button" class="btn btn-default" id="start_trip_button" *ngIf="displayStartTrip" (click)="startTrip()">Start Trip</button> <br>
+			</form>
+
+			<form id="end_trip_container" *ngIf="endTripContainer">
+				<h1>End Trip Details</h1>
+				<div class="form-group">
+				    <label for="">Destination Latitude:</label>
+				    <input type="text" class="form-control" name="destination_latitude" [(ngModel)]="endTripLatitude">
+				  </div>
+				  <div class="form-group">
+				    <label for="">Destination Longitude:</label>
+				    <input type="text" class="form-control" name="destination_longitude" [(ngModel)]="endTripLongitude">
+				  </div>
+
+				<div class="form-group">
+				    <label for="">End Trip Time:</label>
+				    <select class="form-control" name="end_trip_time" [(ngModel)]="endTripTime">
+					    <option value="15">15 min</option>
+					    <option value="30">30 min</option>
+					    <option value="45">45 min</option>
+					    <option value="60">1 hr</option>
+					    <option value="75">1 hr 15 min</option>
+					    <option value="90">1 hr 30 min</option>
+					  </select>
+				  </div>
+
+				  <button type="button" class="btn btn-default" id="end_trip_button" (click)="endTrip()">End Trip</button>
+			</form>
+
+			<form id="booking_details_container" *ngIf="bookingDetailsContainer">
+				<h1>Booking Details</h1>
+				<div class="form-group">
+				    <label id="booking_details">{{bookingDetails}}</label>
+				  </div>
+				<br>
+				Refresh the page fro new Booking.
+			</form>
+		</div>
+	</div>
+</div>
