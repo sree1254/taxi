@@ -47,3 +47,6 @@ In this module all the routing configuration will be done.
 
 # BackEnd
 index.php will contain all the API'S Mentiond above.
+
+# note : Due to time contraint not able to explain the backend technical flow in detail.
+# note : Sceenshots are attached in the mail.
