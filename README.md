@@ -9,11 +9,11 @@ This application is developed for a administrator / Support person where he/she 
 5. Booking details will be displayed on the screen after ending the trip.
 
 # Technical details
-Front End           : HTML, CSS, Bootstrap
-Frond End Framework : Angualr 5
-Backend             : PHP 5.7+
-Database            : MYSQL
-We server           : Apache 2
+-> Front End           : HTML, CSS, Bootstrap
+-> Frond End Framework : Angualr 5
+-> Backend             : PHP 5.7+
+-> Database            : MYSQL
+-> Web server           : Apache 2
 
 # Technical Workflow.
 
